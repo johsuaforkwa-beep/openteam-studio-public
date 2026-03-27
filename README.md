@@ -237,6 +237,19 @@ OpenTeam Studio was built in just three days of vibe coding:
 
 This isn't a perfectly polished commercial product. It's a **real experiment of going from 0 to 1 in three days**: AI Agents aren't just solo tools — they can form teams, collaborate on delivery, and iterate together.
 
+### 🔓 100% Open Source Stack
+
+**We deliberately chose GLM-5 over closed-source models like GPT-4 or Claude Opus.**
+
+Why? Because:
+
+- **Data Privacy** — Your code, your business logic, your proprietary data — nothing leaves your infrastructure
+- **Cost Efficiency** — No per-token API costs spiraling out of control
+- **Sovereignty** — You own your AI stack end-to-end, no vendor lock-in
+- **Capability** — OpenClaw + GLM-5 proved fully capable of complex multi-agent orchestration
+
+This project is living proof: **Open-source AI can build open-source AI tools.** The combination of OpenClaw (open agent framework) + GLM-5 (open model) successfully delivered a production-ready multi-agent platform.
+
 If you're also exploring the boundaries of AI Agent collaboration, welcome to Star ⭐, Fork, and try it out — or build your own AI Team.
 
 ---
