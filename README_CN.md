@@ -4,7 +4,19 @@
 >
 > 单个 Agent 与团队智能之间缺失的那一层。
 
-[English](README.md)
+[English](README.md) | [🌐 在线演示](https://agi4sci.github.io/openteam-studio-public/)
+
+---
+
+## 截图预览
+
+**OpenTeam Studio — 团队管理界面**
+
+<img src="figs/OpenTeam-Studio.png" width="800" alt="OpenTeam Studio 界面">
+
+**Vibe Coding 团队 — 多 Agent 协作实况**
+
+<img src="figs/vibe-coding-chat.png" width="800" alt="Vibe Coding 团队聊天">
 
 ---
 

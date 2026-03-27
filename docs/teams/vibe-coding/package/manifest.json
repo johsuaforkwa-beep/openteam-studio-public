@@ -1,0 +1,263 @@
+{
+  "id": "vibe-coding",
+  "name": "Vibe Coding 团队（更新）",
+  "type": "dev",
+  "icon": "🛠",
+  "description": "Updated description",
+  "dashboard": "./dashboard.html",
+  "skill": "./skills/SKILL.md",
+  "agents": [
+    {
+      "id": "pm-01",
+      "role": "PM",
+      "name": "Aria",
+      "required": true,
+      "soul": "./agents/pm-01/SOUL.md",
+      "skills": [
+        "files",
+        "web-search",
+        "github",
+        "calendar"
+      ],
+      "model": "claude-sonnet-4-6"
+    },
+    {
+      "id": "dev-01",
+      "role": "Dev",
+      "name": "Kai",
+      "required": true,
+      "count": {
+        "min": 1,
+        "max": 5
+      },
+      "soul": "./agents/dev-01/SOUL.md",
+      "skills": [
+        "shell",
+        "files",
+        "github",
+        "browser"
+      ],
+      "model": "claude-sonnet-4-6"
+    },
+    {
+      "id": "dev-02",
+      "role": "Dev",
+      "name": "Luna",
+      "required": false,
+      "soul": "./agents/dev-02/SOUL.md",
+      "skills": [
+        "shell",
+        "files",
+        "github",
+        "browser"
+      ],
+      "model": "claude-sonnet-4-6"
+    },
+    {
+      "id": "reviewer-01",
+      "role": "Reviewer",
+      "name": "Sage",
+      "required": true,
+      "soul": "./agents/reviewer-01/SOUL.md",
+      "model": "claude-opus-4-6"
+    },
+    {
+      "id": "qa-01",
+      "role": "QA",
+      "name": "River",
+      "required": true,
+      "soul": "./agents/qa-01/SOUL.md",
+      "skills": [
+        "shell",
+        "files",
+        "browser"
+      ]
+    }
+  ],
+  "workflow": {
+    "entry": "pm-01",
+    "phases": [
+      {
+        "name": "分析",
+        "agent": "pm-01",
+        "output": "PROJECT.md",
+        "tag": "#TODO"
+      },
+      {
+        "name": "开发",
+        "agents": [
+          "dev-*"
+        ],
+        "output": "debug_{agent}.md",
+        "parallel": true
+      },
+      {
+        "name": "审查",
+        "agent": "reviewer-01",
+        "output": "review_{target}.md"
+      },
+      {
+        "name": "测试",
+        "agent": "qa-01",
+        "output": "qa_report.md"
+      },
+      {
+        "name": "完成",
+        "agent": "pm-01",
+        "action": "mark-done"
+      }
+    ],
+    "transitions": [
+      {
+        "from": "pm-01",
+        "to": [
+          "dev-*"
+        ],
+        "trigger": "mention"
+      },
+      {
+        "from": "dev-*",
+        "to": "reviewer-01",
+        "trigger": "mention"
+      },
+      {
+        "from": "reviewer-01",
+        "to": [
+          "dev-*",
+          "qa-01"
+        ],
+        "trigger": "condition"
+      },
+      {
+        "from": "qa-01",
+        "to": "pm-01",
+        "trigger": "mention"
+      }
+    ]
+  },
+  "communication": {
+    "enabled": true,
+    "defaults": {
+      "receiveFrom": [
+        "*"
+      ],
+      "sendTo": [
+        "*"
+      ],
+      "allowAutoReply": false,
+      "replyCooldownMs": 30000,
+      "maxChainDepth": 3
+    },
+    "agents": {
+      "pm-01": {
+        "receiveFrom": [
+          "user",
+          "*"
+        ],
+        "sendTo": [
+          "dev-01",
+          "dev-02",
+          "dev-03",
+          "reviewer-01",
+          "qa-01"
+        ],
+        "allowAutoReply": true,
+        "maxChainDepth": 5
+      },
+      "dev-01": {
+        "receiveFrom": [
+          "pm-01",
+          "reviewer-01"
+        ],
+        "sendTo": [
+          "pm-01",
+          "reviewer-01"
+        ],
+        "allowAutoReply": false
+      },
+      "dev-02": {
+        "receiveFrom": [
+          "pm-01",
+          "reviewer-01"
+        ],
+        "sendTo": [
+          "pm-01",
+          "reviewer-01"
+        ],
+        "allowAutoReply": false
+      },
+      "reviewer-01": {
+        "receiveFrom": [
+          "pm-01",
+          "dev-01",
+          "dev-02",
+          "dev-03"
+        ],
+        "sendTo": [
+          "pm-01",
+          "dev-01",
+          "dev-02",
+          "dev-03",
+          "qa-01"
+        ],
+        "allowAutoReply": false
+      },
+      "qa-01": {
+        "receiveFrom": [
+          "pm-01",
+          "reviewer-01"
+        ],
+        "sendTo": [
+          "pm-01"
+        ],
+        "allowAutoReply": false
+      }
+    },
+    "patterns": {
+      "dev-*": {
+        "receiveFrom": [
+          "user",
+          "pm-01",
+          "reviewer-01"
+        ],
+        "sendTo": [
+          "pm-01",
+          "reviewer-01"
+        ],
+        "allowAutoReply": false
+      }
+    }
+  },
+  "config": {
+    "defaultModel": "claude-sonnet-4-6",
+    "tools": {
+      "pm": [
+        "files",
+        "web-search",
+        "github",
+        "calendar"
+      ],
+      "dev": [
+        "shell",
+        "files",
+        "github",
+        "browser"
+      ],
+      "reviewer": [
+        "files",
+        "github"
+      ],
+      "qa": [
+        "shell",
+        "files",
+        "browser"
+      ]
+    },
+    "filePatterns": {
+      "project": "PROJECT.md",
+      "debug": "debug_{agent}.md",
+      "review": "review_{target}.md",
+      "qa": "qa_report.md"
+    }
+  }
+}

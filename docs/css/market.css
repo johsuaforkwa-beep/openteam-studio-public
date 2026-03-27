@@ -1,0 +1,64 @@
+/* Marketplace Page Styles */
+
+/* ══════════════════════════════════════════════
+   PAGE 3: MARKETPLACE
+══════════════════════════════════════════════ */
+#page-market { flex-direction: column; overflow: hidden; }
+.market-layout { display: flex; flex: 1; overflow: hidden; }
+.market-sidebar { width: 200px; flex-shrink: 0; background: var(--bg2); border-right: 1px solid var(--border); padding: 14px 0; overflow-y: auto; }
+.market-cat { display: flex; align-items: center; gap: 8px; padding: 8px 16px; cursor: pointer; color: var(--text2); font-size: 12px; border-left: 2px solid transparent; transition: all 0.15s; }
+.market-cat:hover { background: var(--bg3); color: var(--text); }
+.market-cat.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-glow); }
+.market-cat .cat-icon { font-size: 14px; width: 18px; }
+.market-cat .cat-count { margin-left: auto; font-size: 10px; color: var(--text3); }
+
+.market-main { flex: 1; overflow-y: auto; padding: 20px; scrollbar-width: thin; scrollbar-color: var(--border2) transparent; }
+.market-main::-webkit-scrollbar { width: 4px; }
+.market-main::-webkit-scrollbar-thumb { background: var(--border2); }
+
+.market-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.market-search { flex: 1; max-width: 360px; }
+.market-search input { width: 100%; background: var(--bg3); border: 1px solid var(--border2); border-radius: var(--rs); padding: 8px 12px; color: var(--text); font-size: 12px; outline: none; font-family: var(--font); }
+.market-search input:focus { border-color: var(--accent); }
+.market-sort { display: flex; gap: 4px; }
+.sort-btn { padding: 6px 12px; border-radius: var(--rs); font-size: 11px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); cursor: pointer; transition: all 0.1s; }
+.sort-btn:hover { background: var(--bg3); }
+.sort-btn.active { background: var(--bg4); border-color: var(--border2); color: var(--text); }
+
+.market-featured { margin-bottom: 24px; }
+.market-section-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 12px; }
+.featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+
+.market-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; cursor: pointer; transition: border-color 0.15s, transform 0.1s; }
+.market-card:hover { border-color: var(--border2); transform: translateY(-1px); }
+.market-card.featured-card { border-color: rgba(108,142,245,0.3); background: linear-gradient(135deg, var(--bg2) 0%, rgba(108,142,245,0.06) 100%); }
+
+.mc-banner { height: 6px; }
+.mc-body { padding: 14px; }
+.mc-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.mc-icon { width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.mc-meta { flex: 1; }
+.mc-name { font-size: 13px; font-weight: 700; }
+.mc-author { font-size: 11px; color: var(--text2); }
+.mc-badges { display: flex; gap: 4px; flex-wrap: wrap; }
+.mc-badge { padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+.mc-desc { font-size: 11.5px; color: var(--text2); line-height: 1.6; margin: 8px 0 10px; }
+.mc-members-row { display: flex; margin-bottom: 10px; gap: 6px; align-items: center; }
+.mc-member-chip { display: flex; align-items: center; gap: 4px; background: var(--bg3); border: 1px solid var(--border); border-radius: 99px; padding: 2px 7px 2px 4px; }
+.mc-member-dot { width: 14px; height: 14px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 700; }
+.mc-member-name { font-size: 10px; color: var(--text2); }
+
+.mc-footer { display: flex; align-items: center; padding: 10px 14px; border-top: 1px solid var(--border); gap: 8px; background: var(--bg3); }
+.mc-stat { font-size: 10px; color: var(--text3); display: flex; align-items: center; gap: 3px; }
+.mc-spacer { flex: 1; }
+.mc-install-btn { padding: 5px 14px; border-radius: var(--rs); background: var(--accent); border: none; color: white; font-size: 11px; cursor: pointer; transition: background 0.15s; }
+.mc-install-btn:hover { background: var(--accent2); }
+.mc-install-btn.installed { background: var(--bg4); color: var(--green); border: 1px solid var(--green); }
+
+/* ── Tooltip ── */
+.tooltip { position: relative; }
+.tooltip::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--bg4); color: var(--text); font-size: 10px; padding: 4px 8px; border-radius: 4px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.15s; border: 1px solid var(--border2); }
+.tooltip:hover::after { opacity: 1; }
+
+/* ── ERROR DISPLAY ── */
+.error-detail { font-size: 10px; color: var(--text3); margin-top: 4px; font-family: var(--mono); word-break: break-all; }

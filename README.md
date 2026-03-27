@@ -4,7 +4,19 @@
 >
 > The missing layer between individual agents and team intelligence.
 
-[中文文档](README_CN.md)
+[中文文档](README_CN.md) | [🌐 Live Demo](https://agi4sci.github.io/openteam-studio-public/)
+
+---
+
+## Screenshots
+
+**OpenTeam Studio — Team Management Interface**
+
+<img src="figs/OpenTeam-Studio.png" width="800" alt="OpenTeam Studio Interface">
+
+**Vibe Coding Team — Multi-Agent Collaboration in Action**
+
+<img src="figs/vibe-coding-chat.png" width="800" alt="Vibe Coding Team Chat">
 
 ---
 
