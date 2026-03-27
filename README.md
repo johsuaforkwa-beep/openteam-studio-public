@@ -1,81 +1,215 @@
 # OpenTeam Studio
 
-一个基于 [OpenClaw](https://openclaw.ai) 的多 Agent 团队协作平台。OpenTeam 作为 OpenClaw 的 Channel 插件运行，专注于 Team 组建和协作流程。
+> **Turn Agent Collaboration into Reusable Team Apps**
+>
+> The missing layer between individual agents and team intelligence.
 
-## 特性
+[中文文档](README_CN.md)
 
-- **Team 模板系统** - 预定义的 Agent 角色和工作流程
-- **实时协作** - WebSocket 支持的 Agent 间通信
-- **可视化 Dashboard** - 项目进度、文件管理、聊天面板
-- **通信规则控制** - 可配置的 Agent 间消息路由和防无限对话机制
+---
 
-## 快速开始
+## Why OpenTeam Studio?
 
-### 前置条件
+You have powerful agents. But agents working alone hit limits:
+
+- **Context fragmentation** — Each agent starts fresh, no shared memory
+- **Coordination chaos** — Who does what? Who reviews? Who decides?
+- **Knowledge evaporation** — Collaboration patterns die with each session
+
+**OpenTeam Studio fixes this.** It doesn't create agents — it turns agents into teams with reusable workflows, shared context, and persistent knowledge.
+
+---
+
+## The Missing Layer
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    OpenTeam Studio                       │
+│         Team Templates • Dashboards • Skills            │
+│              (This is what we build)                     │
+├─────────────────────────────────────────────────────────┤
+│              Agent Runtime Layer                         │
+│    OpenClaw • Claude Code • Gemini CLI • Custom Agents  │
+│              (You bring these)                           │
+└─────────────────────────────────────────────────────────┘
+```
+
+OpenTeam Studio sits **on top** of your existing agent infrastructure. Whether you use OpenClaw, Claude Code, Gemini CLI, or your own agent runtime — OpenTeam adds the team layer.
+
+---
+
+## Core Concepts
+
+### 🎭 Team Templates — Teams as Code
+
+Define a team once, deploy it anywhere:
+
+```json
+{
+  "id": "vibe-coding",
+  "name": "Vibe Coding Team",
+  "agents": [
+    { "id": "pm-01", "role": "PM", "model": "claude-sonnet-4-6" },
+    { "id": "dev-*", "role": "Dev", "count": { "min": 1, "max": 5 } },
+    { "id": "reviewer-01", "role": "Reviewer" },
+    { "id": "qa-01", "role": "QA" }
+  ],
+  "workflow": {
+    "entry": "pm-01",
+    "phases": ["分析", "开发", "审查", "测试"]
+  }
+}
+```
+
+Templates are:
+- **Version-controlled** — Git-managed, shareable, forkable
+- **Configurable** — Adjust roles, models, tools per team
+- **Composable** — Mix and match agents from any source
+
+### 🧠 Knowledge Harness — From Sessions to Apps
+
+Every team ships with a **Dashboard** — a web app that captures how your team works:
+
+```
+Team Template
+├── manifest.json      # Team definition
+├── dashboard.html     # Custom UI for this team
+├── skills/SKILL.md    # Team-specific workflows
+└── projects/          # Persistent project memory
+```
+
+**What gets harnessed:**
+- Project state and progress tracking
+- File management and code review
+- Team communication patterns
+- Decision history and rationales
+
+### 🔌 Agent-Agnostic — Bring Your Own Agents
+
+OpenTeam doesn't lock you into one agent ecosystem:
+
+| Runtime | Status | Notes |
+|---------|--------|-------|
+| OpenClaw | ✅ Full support | Native WebSocket integration |
+| Claude Code | 🚧 Planned | Via MCP or API bridge |
+| Gemini CLI | 🚧 Planned | Via API bridge |
+| Custom Agents | ✅ Supported | Implement WebSocket protocol |
+
+---
+
+## What Can You Build?
+
+### 🛠 Software Development Team
+PM → Developers → Reviewer → QA
+
+A complete development pipeline where:
+- PM breaks down requirements
+- Devs implement in parallel
+- Reviewer catches issues early
+- QA validates before release
+
+### 🔬 Research Team
+Research Lead → Analysts → Fact-Checker → Writer
+
+Multi-perspective research where:
+- Lead defines methodology
+- Analysts explore different angles
+- Fact-checker verifies claims
+- Writer synthesizes findings
+
+### 📝 Content Team
+Editor → Writers → SEO Specialist → Proofreader
+
+Content pipeline where:
+- Editor assigns and tracks stories
+- Writers draft in parallel
+- SEO optimizes discoverability
+- Proofreader ensures quality
+
+**Your imagination is the limit.** Any multi-step, multi-role process can become a team template.
+
+---
+
+## Quick Start
+
+### Prerequisites
 
 - Node.js 18+
-- OpenClaw Gateway 运行中（默认端口 18789）
+- An agent runtime (OpenClaw recommended)
 
-### 安装
+### Install
 
 ```bash
-cd openteam-studio
+git clone https://github.com/AGI4Sci/openteam-studio-public.git
+cd openteam-studio-public
 npm install
 ```
 
-### 配置
+### Configure
 
-创建 `.env` 文件（参考 `.env.example`）：
+Create `.env` (see `.env.example`):
 
 ```bash
 OPENCLAW_GATEWAY_URL=ws://127.0.0.1:18789
-OPENCLAW_GATEWAY_TOKEN=your-gateway-token
+OPENCLAW_GATEWAY_TOKEN=your-token
 PORT=3456
 ```
 
-### 启动
+### Run
 
 ```bash
 npm run dev
 ```
 
-### 访问
+Visit http://localhost:3456/ui/studio.html to create your first team.
 
-| 用途 | URL |
-|------|-----|
-| Studio 主界面 | http://localhost:3456/ui/studio.html |
-| Team Dashboard | http://localhost:3456/teams/vibe-coding/dashboard.html |
+---
 
-## 项目结构
+## Architecture
 
 ```
 openteam-studio/
-├── ui/                    # OpenTeam Studio 主界面
+├── ui/                    # Studio UI (team management)
 ├── server/                # WebSocket + REST API
-├── core/                  # 共享核心（类型、状态管理）
-└── teams/                 # Team 模板
-    └── vibe-coding/       # 示例：开发团队模板
-        ├── manifest.json  # 模板定义
-        ├── package/       # 前端资源
-        └── skills/        # Team Skill
+├── core/                  # Shared types and state
+└── teams/                 # Team templates (git-managed)
+    └── vibe-coding/       # Example: Dev team template
+        ├── manifest.json  # Team definition
+        ├── package/       # Dashboard UI
+        │   ├── dashboard.html
+        │   ├── js/
+        │   └── css/
+        └── skills/        # Team workflows
+            └── SKILL.md
 ```
 
-## 内置 Team 模板
+---
 
-### Vibe Coding 团队
+## Roadmap
 
-PM → Dev → Reviewer → QA 协作流程：
+- [ ] Multi-runtime support (Claude Code, Gemini CLI)
+- [ ] Team template marketplace
+- [ ] Real-time collaboration dashboard
+- [ ] Project memory and knowledge graphs
+- [ ] Agent performance analytics
 
-1. **PM** - 需求分析、任务分配
-2. **Dev** - 代码实现
-3. **Reviewer** - 代码审查
-4. **QA** - 测试验证
+---
 
-## 文档
+## Contributing
 
-- [OpenClaw 文档](https://docs.openclaw.ai)
-- [Channel Plugin 开发指南](https://docs.openclaw.ai/plugins/building-extensions)
+We welcome contributions! Areas of interest:
+
+- New team templates
+- Dashboard components
+- Agent runtime adapters
+- Documentation improvements
+
+---
 
 ## License
 
 MIT
+
+---
+
+**OpenTeam Studio: Where Agents Become Teams, and Teams Become Apps.**
