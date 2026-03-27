@@ -223,6 +223,24 @@ openteam-studio/
 
 ---
 
+## Behind the Project
+
+**Three Days of Vibe Coding, From Idea to Product**
+
+OpenTeam Studio was built in just three days of vibe coding:
+
+**Day 1** — Claude Code + GLM-5: Started from scratch, built a rapid prototype, validated the core idea.
+
+**Day 2** — Went all-in on open source, switched to OpenClaw + GLM-5: Refactored the architecture, polished the product experience, made the code elegant.
+
+**Day 3** — Used OpenTeam's Vibe Coding Team to debug OpenTeam itself: PM assigns tasks, Dev writes code, Reviewer reviews, QA tests — team collaboration, self-debugging.
+
+This isn't a perfectly polished commercial product. It's a **real experiment of going from 0 to 1 in three days**: AI Agents aren't just solo tools — they can form teams, collaborate on delivery, and iterate together.
+
+If you're also exploring the boundaries of AI Agent collaboration, welcome to Star ⭐, Fork, and try it out — or build your own AI Team.
+
+---
+
 ## Contributing
 
 We welcome contributions! Areas of interest:

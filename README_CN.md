@@ -223,6 +223,24 @@ openteam-studio/
 
 ---
 
+## 项目故事
+
+**三天 Vibe Coding，从想法到产品**
+
+OpenTeam Studio 是我用三天时间 Vibe Coding 的成果：
+
+**Day 1** — Claude Code + GLM-5：从零开始，快速搭建原型，验证核心想法是否可行。
+
+**Day 2** — 全面拥抱开源，切换到 OpenClaw + GLM-5：重构架构，打磨产品体验，让代码更优雅。
+
+**Day 3** — 用 OpenTeam 的 Vibe Coding Team 调试 OpenTeam 自己：让 PM 分配任务，Dev 写代码，Reviewer 审查，QA 测试——团队协作，自己调试自己。
+
+这不是一个完美打磨的商业产品，而是一个**三天从 0 到 1 的真实实验**：AI Agent 不只是单打独斗的工具，它们可以组成团队、协作交付、迭代进化。
+
+如果你也在探索 AI Agent 协作的边界，欢迎 Star ⭐、Fork、体验——或者组建你自己的 AI Team。
+
+---
+
 ## 贡献
 
 欢迎贡献！感兴趣的领域：
