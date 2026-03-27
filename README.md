@@ -239,7 +239,7 @@ This isn't a perfectly polished commercial product. It's a **real experiment of 
 
 ### 🔓 100% Open Source Stack
 
-**We deliberately chose GLM-5 over closed-source models like GPT-4 or Claude Opus.**
+**We deliberately chose GLM-5 over closed-source models like GPT-5.4 or Opus 4.6.**
 
 Why? Because:
 

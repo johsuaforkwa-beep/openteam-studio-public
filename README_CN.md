@@ -239,7 +239,7 @@ OpenTeam Studio 是我用三天时间 Vibe Coding 的成果：
 
 ### 🔓 100% 开源技术栈
 
-**我们刻意选择 GLM-5，而非 GPT-4 或 Claude Opus 等闭源模型。**
+**我们刻意选择 GLM-5，而非 GPT-5.4 或 Opus 4.6 等闭源模型。**
 
 为什么？
 
