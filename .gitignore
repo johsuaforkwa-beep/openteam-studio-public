@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# 环境变量（包含敏感信息）
+.env
+
+# 本地运行时数据 - 只忽略 projects 目录
+teams/*/projects/
+teams/*/memory/

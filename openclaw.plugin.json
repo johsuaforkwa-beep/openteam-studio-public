@@ -1,0 +1,23 @@
+{
+  "id": "openteam",
+  "name": "OpenTeam Studio",
+  "version": "0.1.0",
+  "description": "Multi-agent team management platform",
+  "author": "OpenTeam",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "capabilities": ["messaging", "streaming", "multi-agent"],
+  "config": {
+    "port": "env:PORT",
+    "teamsDir": "./teams"
+  },
+  "openclaw": {
+    "minVersion": "1.0.0",
+    "channelType": "openteam",
+    "hooks": {
+      "onMessage": "handleInboundMessage",
+      "onStatus": "handleStatusUpdate"
+    }
+  }
+}

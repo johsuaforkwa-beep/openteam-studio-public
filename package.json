@@ -1,0 +1,31 @@
+{
+  "name": "openteam-studio",
+  "version": "0.1.0",
+  "description": "Multi-agent team management platform based on OpenClaw",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch server/index.ts",
+    "build": "tsc",
+    "start": "node dist/server/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.14.0",
+    "dotenv": "^16.6.1",
+    "hono": "^4.12.0",
+    "uuid": "^10.0.0",
+    "ws": "^8.18.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

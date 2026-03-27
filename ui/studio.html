@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenTeam Studio</title>
+
+<!-- CSS Modules -->
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/agent-studio.css">
+<link rel="stylesheet" href="css/teams.css">
+<link rel="stylesheet" href="css/market.css">
+<link rel="stylesheet" href="css/chat-panel.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand"><span class="lobster">🤝</span> OpenTeam Studio</div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showPage('studio', this, event)">Agent 工坊</div>
+    <div class="nav-tab" onclick="showPage('teams', this, event)">Team 组建</div>
+    <div class="nav-tab" onclick="showPage('market', this, event)">Team 商城 <span class="badge-count">48</span></div>
+  </div>
+  <div class="nav-right">
+    <button class="btn" onclick="showNotif('已同步')">⬆ 同步</button>
+    <button class="btn btn-primary" onclick="deployAll()">▶ 部署所有 Agent</button>
+  </div>
+</nav>
+
+<!-- PAGE 1: AGENT STUDIO -->
+<div class="page active" id="page-studio">
+  <!-- Agent List -->
+  <div class="agent-list-col">
+    <div class="col-header">
+      <span class="col-title">我的 Agents</span>
+      <div class="add-btn" onclick="createNewAgent()" title="新建 Agent">+</div>
+    </div>
+    <div class="agent-list" id="agentList"></div>
+  </div>
+
+  <!-- SOUL Editor -->
+  <div class="soul-editor-col">
+    <div class="editor-topbar" id="editorTopbar">
+      <div class="editor-agent-name" id="editorAgentName">dev-01</div>
+      <div class="status-pill">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block"></span>
+        运行中
+      </div>
+      <button class="btn" onclick="exportSOUL()">↓ SOUL.md</button>
+      <button class="btn btn-primary" onclick="saveAgent()">保存</button>
+    </div>
+    <div class="editor-tabs">
+      <div class="etab active" onclick="switchEtab('soul', this, event)">SOUL.md</div>
+      <div class="etab" onclick="switchEtab('skills', this, event)">Skills</div>
+      <div class="etab" onclick="switchEtab('config', this, event)">openclaw.json</div>
+      <div class="etab" onclick="switchEtab('memory', this, event)">Memory</div>
+    </div>
+    <div class="editor-body" id="editorBody"></div>
+  </div>
+
+  <!-- Preview -->
+  <div class="preview-col">
+    <div class="preview-header">
+      <span class="preview-title">Agent 预览</span>
+    </div>
+    <div id="agentPreview"></div>
+    <div class="md-raw">
+      <div class="md-raw-title">SOUL.md 原始内容</div>
+      <div class="md-raw-code" id="soulRaw"></div>
+    </div>
+    <div class="preview-actions">
+      <div class="deploy-status">
+        <div class="deploy-dot"></div>
+        <div>
+          <div class="deploy-text" id="deployText">claude-sonnet-4-6 · 运行中</div>
+          <div class="deploy-model" id="deployModel">openclaw workspace: alpha</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="width:100%" onclick="openTestChat()">⚡ 测试对话</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: TEAMS -->
+<div class="page" id="page-teams">
+  <div class="teams-wrap">
+    <div class="section-title">我的 Teams</div>
+    <div class="section-sub">将 Agent 组合成协作团队</div>
+
+    <div class="my-teams-grid" id="myTeamsGrid"></div>
+
+    <div class="team-builder-wrap">
+      <div class="builder-title">
+        <span>🔧</span> 组建新 Team
+      </div>
+      <div style="display:flex;gap:12px;margin-bottom:14px">
+        <input class="soul-input" id="newTeamName" placeholder="Team 名称" style="height:34px;font-family:var(--font)">
+        <select class="soul-input" id="newTeamType" style="height:34px;width:160px;resize:none;font-family:var(--font)">
+          <option value="dev">🛠 开发团队</option>
+          <option value="research">🔬 研究团队</option>
+          <option value="business">💼 商业团队</option>
+          <option value="creative">🎨 创意团队</option>
+          <option value="ops">⚙️ 运维团队</option>
+        </select>
+      </div>
+      <div class="builder-canvas" id="builderCanvas"></div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <button class="btn btn-primary" onclick="createTeam()">✓ 创建 Team</button>
+        <button class="btn" onclick="clearBuilder()">清空</button>
+      </div>
+      
+      <!-- Skill 编辑器 -->
+      <div class="skill-editor-section" style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px">
+        <div class="builder-title" style="margin-bottom:12px">
+          <span>📜</span> Team Skill
+        </div>
+        <div style="display:flex;gap:12px">
+          <div style="flex:1">
+            <div style="font-size:11px;color:var(--text3);margin-bottom:6px">编辑 SKILL.md</div>
+            <textarea class="soul-input" id="skillEditor" placeholder="# Team Skill&#10;&#10;定义团队的协作规则和流程..." style="width:100%;height:300px;font-family:var(--mono);font-size:12px;line-height:1.6;resize:vertical" oninput="updateSkillPreview()"></textarea>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn btn-primary" onclick="saveTeamSkill()">💾 保存 Skill</button>
+              <button class="btn" onclick="loadTeamSkill()">📂 加载</button>
+            </div>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:11px;color:var(--text3);margin-bottom:6px">预览</div>
+            <div id="skillPreview" class="skill-preview" style="width:100%;height:300px;overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px;font-size:13px;line-height:1.6"></div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px">
+          📁 文件位置: <code id="skillPath" style="color:var(--accent)">teams/{team-id}/package/skills/SKILL.md</code>
+        </div>
+      </div>
+      
+      <!-- 通信规则配置 -->
+      <div class="skill-editor-section" style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px">
+        <div class="builder-title" style="margin-bottom:8px">
+          <span>🔐</span> 通信规则配置
+          <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:8px">（强制执行，防止无限对话）</span>
+        </div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:16px">
+          定义 Agent 之间的通信权限。规则在代码层面强制执行，比 Skill 的软约束更可靠。
+        </div>
+        
+        <div id="communicationRulesEditor">
+          <!-- 规则配置将由 JS 动态生成 -->
+          <div style="color:var(--text3);font-size:12px;padding:20px;text-align:center;background:var(--bg2);border-radius:6px">
+            请先选择或创建一个 Team
+          </div>
+        </div>
+        
+        <div style="margin-top:16px">
+          <button class="btn btn-primary" onclick="saveCommunicationRules()">💾 保存通信规则</button>
+          <button class="btn" onclick="resetCommunicationRules()">↺ 重置为默认</button>
+        </div>
+        
+        <!-- 规则说明 -->
+        <div style="margin-top:20px;padding:16px;background:var(--bg2);border-radius:6px;font-size:12px">
+          <div style="font-weight:600;margin-bottom:8px">📋 规则说明</div>
+          <table style="width:100%;border-collapse:collapse">
+            <tr>
+              <td style="padding:4px 8px;color:var(--text3);width:140px"><code>receiveFrom</code></td>
+              <td style="padding:4px 8px">允许接收消息的来源列表，支持 <code>"*"</code> 所有人，<code>"user"</code> 用户</td>
+            </tr>
+            <tr>
+              <td style="padding:4px 8px;color:var(--text3)"><code>sendTo</code></td>
+              <td style="padding:4px 8px">允许 @mention 的目标列表</td>
+            </tr>
+            <tr>
+              <td style="padding:4px 8px;color:var(--text3)"><code>allowAutoReply</code></td>
+              <td style="padding:4px 8px">是否允许自动回复 agent 消息（非用户消息）</td>
+            </tr>
+            <tr>
+              <td style="padding:4px 8px;color:var(--text3)"><code>maxChainDepth</code></td>
+              <td style="padding:4px 8px">最大对话链深度，超过后停止</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3: MARKETPLACE -->
+<div class="page" id="page-market">
+  <div class="market-layout">
+    <div class="market-sidebar">
+      <div style="padding:8px 16px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--text3)">分类</div>
+      <div class="market-cat active" onclick="filterCat('all', this)"><span class="cat-icon">⬡</span> 全部</div>
+      <div class="market-cat" onclick="filterCat('dev', this)"><span class="cat-icon">🛠</span> 开发团队</div>
+      <div class="market-cat" onclick="filterCat('research', this)"><span class="cat-icon">🔬</span> 研究团队</div>
+      <div class="market-cat" onclick="filterCat('business', this)"><span class="cat-icon">💼</span> 商业运营</div>
+      <div class="market-cat" onclick="filterCat('creative', this)"><span class="cat-icon">🎨</span> 创意团队</div>
+      <div class="market-cat" onclick="filterCat('ops', this)"><span class="cat-icon">⚙️</span> DevOps</div>
+    </div>
+
+    <div class="market-main">
+      <div class="market-header">
+        <div class="market-search"><input placeholder="🔍 搜索 Team 模版…" oninput="searchMarket(this.value)"></div>
+        <div class="market-sort">
+          <button class="sort-btn active" onclick="sortMarket('popular', this)">热门</button>
+          <button class="sort-btn" onclick="sortMarket('new', this)">最新</button>
+        </div>
+      </div>
+
+      <div class="market-featured">
+        <div class="market-section-title">✦ 精选 Team 模版</div>
+        <div class="featured-grid" id="featuredGrid"></div>
+      </div>
+
+      <div>
+        <div class="market-section-title">全部模板</div>
+        <div class="featured-grid" id="allGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Agent Picker Modal -->
+<div class="modal-overlay" id="agentPickerModal" onclick="if(event.target.id==='agentPickerModal')closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">选择 Agent</span>
+      <div class="modal-close" onclick="closeModal()">✕</div>
+    </div>
+    <div class="modal-search"><input placeholder="搜索 Agent…" oninput="filterModalAgents(this.value)"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Create Agent Modal -->
+<div class="modal-overlay" id="createAgentModal" onclick="if(event.target.id==='createAgentModal')closeCreateAgentModal()">
+  <div class="modal" style="width:480px">
+    <div class="modal-header">
+      <span class="modal-title">🤖 创建新 Agent</span>
+      <div class="modal-close" onclick="closeCreateAgentModal()">✕</div>
+    </div>
+    <div class="modal-body" style="padding:16px">
+      <div class="field">
+        <div class="field-label">Agent ID</div>
+        <input class="soul-input" id="newAgentId" placeholder="输入 Agent ID..." style="font-family:var(--mono)">
+      </div>
+      <div class="field">
+        <div class="field-label">显示名称</div>
+        <input class="soul-input" id="newAgentName" placeholder="输入名称...">
+      </div>
+      <div class="field">
+        <div class="field-label">角色</div>
+        <select class="soul-input" id="newAgentRole">
+          <option value="Agent">通用 Agent</option>
+          <option value="Dev">开发工程师</option>
+          <option value="PM">项目经理</option>
+          <option value="QA">测试工程师</option>
+        </select>
+      </div>
+    </div>
+    <div style="padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" onclick="closeCreateAgentModal()">取消</button>
+      <button class="btn btn-primary" onclick="submitNewAgent()">创建 Agent</button>
+    </div>
+  </div>
+</div>
+
+<!-- Notification -->
+<div class="notif" id="notif"><div class="notif-dot"></div><span id="notifText"></span></div>
+
+<!-- Chat Panel (Agent 间消息) -->
+<div id="chatPanel"></div>
+
+<!-- JS Entry (ES Module) -->
+<script type="module" src="js/app.js"></script>
+<script>
+// 兼容函数（非模块化代码调用）
+function createNewAgent() {
+  document.getElementById('createAgentModal').classList.add('open');
+  document.getElementById('newAgentId').value = '';
+  document.getElementById('newAgentName').value = '';
+  document.getElementById('newAgentId').focus();
+}
+
+function closeCreateAgentModal() {
+  document.getElementById('createAgentModal').classList.remove('open');
+}
+
+async function submitNewAgent() {
+  const id = document.getElementById('newAgentId').value.trim();
+  const name = document.getElementById('newAgentName').value.trim() || id;
+  const role = document.getElementById('newAgentRole').value;
+  
+  if (!id) {
+    showNotif('⚠ 请输入 Agent ID', 'warning');
+    return;
+  }
+  
+  closeCreateAgentModal();
+  
+  // 调用 API 创建
+  try {
+    const res = await fetch('/api/agents', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id, name, role,
+        teamId: 'default',
+        soul: { identity: '', personality: '', mission: '', communication: '', constraints: '', traits: [], language: 'zh-CN', temperature: 0.7 },
+        skills: ['files'],
+        model: 'claude-sonnet-4-6',
+      }),
+    });
+    const data = await res.json();
+    if (data.ok) {
+      showNotif(`✓ Agent "${id}" 创建成功`);
+      location.reload();
+    } else {
+      showNotif(`⚠ 创建失败: ${data.error}`, 'error');
+    }
+  } catch (e) {
+    showNotif(`⚠ 创建失败`, 'error');
+  }
+}
+
+window.createNewAgent = createNewAgent;
+window.closeCreateAgentModal = closeCreateAgentModal;
+window.submitNewAgent = submitNewAgent;
+window.clearBuilder = () => {
+  if (window.toggleBuilderSlot) {
+    // 清空所有 slots
+    const slots = [...(window.state?.builderSlots || [])];
+    slots.forEach(id => window.toggleBuilderSlot(id));
+  }
+};
+</script>
+</body>
+</html>
