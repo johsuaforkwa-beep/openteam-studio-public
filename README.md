@@ -10,13 +10,29 @@
 
 ## Screenshots
 
-**OpenTeam Studio — Team Management Interface**
+### 🏠 OpenTeam Studio — Main Interface
 
 <img src="figs/OpenTeam-Studio.png" width="800" alt="OpenTeam Studio Interface">
 
-**Vibe Coding Team — Multi-Agent Collaboration in Action**
+### 🤖 Agent Studio — Define Your Agents
+
+<img src="figs/agent.png" width="800" alt="Agent Studio">
+
+### 👥 Team Builder — Compose Your Team
+
+<img src="figs/team.png" width="800" alt="Team Builder">
+
+### 🛒 Marketplace — Discover Team Templates
+
+<img src="figs/Marketplace.png" width="800" alt="Team Marketplace">
+
+### 💬 Vibe Coding Team — Multi-Agent Collaboration
 
 <img src="figs/vibe-coding-chat.png" width="800" alt="Vibe Coding Team Chat">
+
+### ✅ Project Results — Delivered by AI Team
+
+<img src="figs/result.png" width="800" alt="Project Results">
 
 ---
 

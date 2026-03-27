@@ -10,13 +10,29 @@
 
 ## 截图预览
 
-**OpenTeam Studio — 团队管理界面**
+### 🏠 OpenTeam Studio — 主界面
 
 <img src="figs/OpenTeam-Studio.png" width="800" alt="OpenTeam Studio 界面">
 
-**Vibe Coding 团队 — 多 Agent 协作实况**
+### 🤖 Agent 工坊 — 定义你的 Agent
+
+<img src="figs/agent.png" width="800" alt="Agent 工坊">
+
+### 👥 团队组建 — 组合你的团队
+
+<img src="figs/team.png" width="800" alt="团队组建">
+
+### 🛒 模板商城 — 发现团队模板
+
+<img src="figs/Marketplace.png" width="800" alt="模板商城">
+
+### 💬 Vibe Coding 团队 — 多 Agent 协作
 
 <img src="figs/vibe-coding-chat.png" width="800" alt="Vibe Coding 团队聊天">
+
+### ✅ 项目成果 — AI 团队交付
+
+<img src="figs/result.png" width="800" alt="项目成果">
 
 ---
 
